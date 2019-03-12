@@ -70,12 +70,6 @@ public class MainActivity extends AppCompatActivity {
         topRegionList = loadRegionName.getRegionArrayJson(); // 여기에 시/도 코드를 넣으면 시/군/구 가 나옴
     }
 
-    private void log() {
-        for(int i = 0; i < topRegionList.size(); i++) {
-            Log.d("로그찍자", topRegionList.get(i).getCode() + " " + topRegionList.get(i).getValue());
-        }
-    }
-
     private void setSpnSiDo() {
         final ArrayList<String> siDoNameList= new ArrayList<>();
         for(Region r : topRegionList)
