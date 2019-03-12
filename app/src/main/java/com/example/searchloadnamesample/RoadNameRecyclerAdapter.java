@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RoadNameRecyclerAdapter extends RecyclerView.Adapter<RoadNameRecyclerAdapter.ItemViewHolder> {
-    ArrayList<RoadName> items;
-    Context itemContext;
+public abstract class RoadNameRecyclerAdapter extends RecyclerView.Adapter<RoadNameRecyclerAdapter.ItemViewHolder> {
+    private ArrayList<RoadName> items;
+    private Context itemContext;
 
     public RoadNameRecyclerAdapter(ArrayList<RoadName> items) {
         this.items = items;
@@ -32,7 +32,7 @@ public class RoadNameRecyclerAdapter extends RecyclerView.Adapter<RoadNameRecycl
         itemViewHolder.tvJibunAddr.setText(items.get(i).getJibunAddr());
 
         itemViewHolder.itemView.setOnClickListener(v -> {
-
+            setItemClickListener(items.get(i).getRoadAddr());
         });
     }
 
@@ -41,9 +41,7 @@ public class RoadNameRecyclerAdapter extends RecyclerView.Adapter<RoadNameRecycl
         return items.size();
     }
 
-    interface ItemClickListener {
-        String clickRegion();
-    }
+    public abstract void setItemClickListener(String s);
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView tvRoadAddr;

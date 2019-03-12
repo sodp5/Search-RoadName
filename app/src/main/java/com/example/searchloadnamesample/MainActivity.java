@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private RoadNameRecyclerAdapter roadNameRecyclerAdapter;
     private ArrayList<RoadName> roadNameList;
 
+    private String resultJuso;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,7 +154,12 @@ public class MainActivity extends AppCompatActivity {
         if(roadNameList.isEmpty())
             tvJuso.setText("주소를 찾을 수 없습니다.");
         rvRegionName.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        roadNameRecyclerAdapter = new RoadNameRecyclerAdapter(roadNameList);
+        roadNameRecyclerAdapter = new RoadNameRecyclerAdapter(roadNameList) {
+            @Override
+            public void setItemClickListener(String s) {
+                tvJuso.setText(s);
+            }
+        };
 
         rvRegionName.setAdapter(roadNameRecyclerAdapter);
     }
