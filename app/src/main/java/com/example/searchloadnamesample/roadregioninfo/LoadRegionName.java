@@ -1,6 +1,9 @@
-package com.example.searchloadnamesample;
+package com.example.searchloadnamesample.roadregioninfo;
 
 import android.util.Log;
+
+import com.example.searchloadnamesample.httpurlconnection.LoadNameHttpConnection;
+import com.example.searchloadnamesample.roadnamerecyclerview.RoadName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,7 +11,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.concurrent.ExecutionException;
 
 public class LoadRegionName {
@@ -56,18 +58,13 @@ public class LoadRegionName {
             e.printStackTrace();
         }
 
-        ArrayList<Region> r = (ArrayList<Region>) (regionList.clone());
+        ArrayList<Region> regions = (ArrayList<Region>) (regionList.clone());
 
-        Collections.sort(r, new Comparator<Region>() {
-            @Override
-            public int compare(Region r1, Region r2) {
-                return r1.getValue().compareTo(r2.getValue());
-            }
-        });
+        Collections.sort(regions, (r1, r2) -> r1.getValue().compareTo(r2.getValue()));
 
         regionList.clear();
 
-        return r;
+        return regions;
     }
 
     public ArrayList<RoadName> getRoadNameJSON(String keyWord) {

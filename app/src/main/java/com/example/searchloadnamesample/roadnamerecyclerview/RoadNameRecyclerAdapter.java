@@ -1,4 +1,4 @@
-package com.example.searchloadnamesample;
+package com.example.searchloadnamesample.roadnamerecyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.searchloadnamesample.R;
 
 import java.util.ArrayList;
 

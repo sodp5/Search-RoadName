@@ -1,4 +1,4 @@
-package com.example.searchloadnamesample;
+package com.example.searchloadnamesample.roadnamerecyclerview;
 
 public class RoadName {
     private String roadAddr;

@@ -1,4 +1,4 @@
-package com.example.searchloadnamesample;
+package com.example.searchloadnamesample.roadregioninfo;
 
 public class Region {
     private String code;

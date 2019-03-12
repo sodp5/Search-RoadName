@@ -1,4 +1,4 @@
-package com.example.searchloadnamesample;
+package com.example.searchloadnamesample.httpurlconnection;
 
 import android.os.AsyncTask;
 
@@ -13,17 +13,9 @@ import java.net.URL;
 public class LoadNameHttpConnection extends AsyncTask<Void, Void, String> {
     private HttpURLConnection httpURLConnection;
     private URL url;
-//    String myUrl;
-//    private String juso1 = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=10&keyword=%EA%B0%95%EC%84%9C%EB%A1%9C7%EA%B8%B8&confmKey=TESTJUSOGOKR&resultType=json";
-//    private final String juso = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=5&resultType=json";
-//    private final String confmKey = "U01TX0FVVEgyMDE5MDMwNTIxMDI1NDEwODU1NzI=";
-//
-//    private final String regionJuso = "http://www.kma.go.kr/DFSROOT/POINT/DATA/";
-//    private final String regionLastUrl = "json.txt";
 
     public LoadNameHttpConnection(String url) {
         try {
-//            myUrl = juso + "&keyword=" + keyWord + "&confmKey=" + confmKey;
             this.url = new URL(url);
             httpURLConnection = (HttpURLConnection) this.url.openConnection();
             httpURLConnection.setRequestMethod("POST");

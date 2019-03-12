@@ -13,6 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.searchloadnamesample.roadnamerecyclerview.RoadName;
+import com.example.searchloadnamesample.roadnamerecyclerview.RoadNameRecyclerAdapter;
+import com.example.searchloadnamesample.roadregioninfo.LoadRegionName;
+import com.example.searchloadnamesample.roadregioninfo.Region;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,11 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
         initInstance();
-//        setSpnSiGunGu();
 
         btnJuso.setOnClickListener(v -> setRoadNameList());
-
-//        log();
 
         setSpnSiDo();
     }
@@ -99,11 +101,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 setSpnSiGunGu(topRegionList.get(clickedIndex).getCode());
-
-//                setSpnSiGunGu(regionList.get(regionList.indexOf(lastClickSiDo)).getCode());
-
-                //추후에 시군구가 나오는 스피너도 나오게 만들기
-                //                setSpnSiGunGu();
             }
 
             @Override
@@ -112,15 +109,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private void setSpnSiGunGu() {
-//        final String[] defaultString = {"시/도를 선택해 주세요"};
-//
-//        ArrayAdapter<String> siGunGuAdapter = new ArrayAdapter<>(getApplicationContext(),
-//                android.R.layout.simple_spinner_dropdown_item, defaultString);
-//
-//        spnSiGunGu.setAdapter(siGunGuAdapter);
-//    }
 
     private void setSpnSiGunGu(String code) {
         final ArrayList<String> siGunGuNameList= new ArrayList<>();
@@ -157,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
         roadNameRecyclerAdapter = new RoadNameRecyclerAdapter(roadNameList) {
             @Override
             public void setItemClickListener(String s) {
-                tvJuso.setText(s);
+                tvJuso.setText(s); // 테스트용 코드
+//                resultJuso = s;  // 실제 사용하는 코드
             }
         };
 
