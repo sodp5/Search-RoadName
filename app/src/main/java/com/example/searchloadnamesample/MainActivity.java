@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initInstance() {
         loadRegionName = new LoadRegionName();
-        topRegionList = loadRegionName.getRegionArrayJson(); // 여기에 시/도 코드를 넣으면 시/군/구 가 나옴
+        topRegionList = loadRegionName.getRegionArray(); // 여기에 시/도 코드를 넣으면 시/군/구 가 나옴
     }
 
     private void setSpnSiDo() {
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     private void setSpnSiGunGu(String code) {
         final ArrayList<String> siGunGuNameList= new ArrayList<>();
 
-        mdlRegionList = loadRegionName.getRegionArrayJson(Integer.parseInt(code));
+        mdlRegionList = loadRegionName.getRegionArray(Integer.parseInt(code));
 
         for(Region r : mdlRegionList)
             siGunGuNameList.add(r.getValue());
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     private void setRoadNameList() {
         if(roadNameList != null)
             roadNameList.clear();
-        roadNameList = loadRegionName.getRoadNameJSON(String.format("%s", lastClickSiDo + " " + lastClickSiGunGu + " " + edtJuso.getText()));
+        roadNameList = loadRegionName.getRoadName(String.format("%s", lastClickSiDo + " " + lastClickSiGunGu + " " + edtJuso.getText()));
         if(roadNameList.isEmpty())
             tvJuso.setText("주소를 찾을 수 없습니다.");
         rvRegionName.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

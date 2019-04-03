@@ -33,9 +33,7 @@ public abstract class RoadNameRecyclerAdapter extends RecyclerView.Adapter<RoadN
         itemViewHolder.tvRoadAddr.setText(items.get(i).getRoadAddr());
         itemViewHolder.tvJibunAddr.setText(items.get(i).getJibunAddr());
 
-        itemViewHolder.itemView.setOnClickListener(v -> {
-            setItemClickListener(items.get(i).getRoadAddr());
-        });
+        itemViewHolder.itemView.setOnClickListener(v -> setItemClickListener(items.get(i).getRoadAddr()));
     }
 
     @Override

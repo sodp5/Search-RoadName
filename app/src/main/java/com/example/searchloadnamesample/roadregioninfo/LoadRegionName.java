@@ -14,11 +14,11 @@ import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 
 public class LoadRegionName {
-    private final String roadNamejuso = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=5&resultType=json";
-    private final String confmKey = "U01TX0FVVEgyMDE5MDMwNTIxMDI1NDEwODU1NzI=";
+    private final static String ROAD_NAME_JUSO = "http://www.juso.go.kr/addrlink/addrLinkApi.do?currentPage=1&countPerPage=5&resultType=json";
+    private final static String CONFM_KEY = "U01TX0FVVEgyMDE5MDMwNTIxMDI1NDEwODU1NzI=";
 
-    private final String regionJuso = "http://www.kma.go.kr/DFSROOT/POINT/DATA/";
-    private final String regionLastUrl = ".json.txt";
+    private final static String REGION_JUSO = "http://www.kma.go.kr/DFSROOT/POINT/DATA/";
+    private final static String REGION_LAST_URL = ".json.txt";
 
     private ArrayList<Region> regionList = new ArrayList<>();
     private ArrayList<RoadName> roadNameList = new ArrayList<>();
@@ -29,14 +29,14 @@ public class LoadRegionName {
     private JSONArray jsonArray;
 
     @SuppressWarnings("unchecked")
-    public ArrayList<Region> getRegionArrayJson(int... code) {  // 안넣거나, 1개만 넣거나
+    public ArrayList<Region> getRegionArray(int... code) {  // 안넣거나, 1개만 넣거나
         if (code.length == 0) {
-            loadNameHttpConnection = new LoadNameHttpConnection(regionJuso + "top" + regionLastUrl);
-            Log.d("현재의 url", regionJuso + "top" + regionLastUrl);
+            loadNameHttpConnection = new LoadNameHttpConnection(REGION_JUSO + "top" + REGION_LAST_URL);
+            Log.d("현재의 url", REGION_JUSO + "top" + REGION_LAST_URL);
         }
         else {
-            loadNameHttpConnection = new LoadNameHttpConnection(regionJuso + "mdl." + code[0] + regionLastUrl);
-            Log.d("현재의 url", regionJuso + "mdl." + code[0] + regionLastUrl);
+            loadNameHttpConnection = new LoadNameHttpConnection(REGION_JUSO + "mdl." + code[0] + REGION_LAST_URL);
+            Log.d("현재의 url", REGION_JUSO + "mdl." + code[0] + REGION_LAST_URL);
         }
         loadNameHttpConnection.execute();
 
@@ -67,8 +67,8 @@ public class LoadRegionName {
         return regions;
     }
 
-    public ArrayList<RoadName> getRoadNameJSON(String keyWord) {
-        loadNameHttpConnection = new LoadNameHttpConnection(roadNamejuso + "&keyword=" + keyWord + "&confmKey=" + confmKey);
+    public ArrayList<RoadName> getRoadName(String keyWord) {
+        loadNameHttpConnection = new LoadNameHttpConnection(ROAD_NAME_JUSO + "&keyword=" + keyWord + "&confmKey=" + CONFM_KEY);
         loadNameHttpConnection.execute();
 
         try {
