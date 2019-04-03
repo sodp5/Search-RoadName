@@ -19,6 +19,9 @@ import com.example.searchloadnamesample.roadregioninfo.LoadRegionName;
 import com.example.searchloadnamesample.roadregioninfo.Region;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MainActivity extends AppCompatActivity {
     private LoadRegionName loadRegionName;
@@ -71,9 +74,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setSpnSiDo() {
-        final ArrayList<String> siDoNameList= new ArrayList<>();
-        for(Region r : topRegionList)
-            siDoNameList.add(r.getValue());
+        HashMap<String, Integer> siDoNameMap = new LinkedHashMap<>();
+
+        for (int i = 0; i < topRegionList.size(); i++)
+            siDoNameMap.put(topRegionList.get(i).getValue(), i);
+
+        Object[] objArray = siDoNameMap.keySet().toArray();
+        String[] siDoNameList = Arrays.copyOf(objArray, objArray.length, String[].class);
 
         ArrayAdapter<String> regionAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item, siDoNameList);
@@ -82,19 +89,10 @@ public class MainActivity extends AppCompatActivity {
         spnSiDo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                lastClickSiDo = siDoNameList.get(i);
-                Log.d("인덱스는", lastClickSiDo);
-                int clickedIndex = -1;
+                lastClickSiDo = (String) adapterView.getSelectedItem();
+                Log.d("마지막클릭은", lastClickSiDo);
 
-                for(int j = 0; j < topRegionList.size(); j++) {
-                    Log.d("인덱스는", topRegionList.get(j).getValue());
-                    if (topRegionList.get(j).getValue().equals(lastClickSiDo)) {
-
-                        clickedIndex = j;
-                        break;
-                    }
-                }
-                setSpnSiGunGu(topRegionList.get(clickedIndex).getCode());
+                setSpnSiGunGu(topRegionList.get(siDoNameMap.get(lastClickSiDo)).getCode());
             }
 
             @Override
